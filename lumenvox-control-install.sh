@@ -652,7 +652,9 @@ if [ $? -ne 0 ]; then
     printf "\t\tFailed to copy /etc/kubernetes/admin.conf to $HOME/.kube/config\n" | $TEE -a
     exit 1
 fi
-sudo chown $USER:$USER $HOME/.kube/config 1>>$MAIN_LOG 2>>$ERR_LOG
+# The following does not work in our environment
+#sudo chown $USER:$USER $HOME/.kube/config 1>>$MAIN_LOG 2>>$ERR_LOG
+sudo chown $USER:"$GROUP" $HOME/.kube/config 1>>$MAIN_LOG 2>>$ERR_LOG
 if [ $? -ne 0 ]; then
     printf "\t\tFailed to change ownership of $HOME/.kube/config\n" | $TEE -a
     exit 1
@@ -892,9 +894,11 @@ if [ $? -ne 0 ]; then
 fi
 
 
-cd /home/$USER/containers-quick-start
+# Changes to support our environment
+# cd /home/$USER/containers-quick-start
 printf "\tSetting up speech-tls-secret using key $2 and cert $3...\n" | $TEE -a
-printf "\tCommmand: kubectl create secret tls speech-tls-secret --key ./$2 --cert ./$3 -n lumenvox\n" | $TEE -a
+# printf "\tCommmand: kubectl create secret tls speech-tls-secret --key ./$2 --cert ./$3 -n lumenvox\n" | $TEE -a
+printf "\tCommmand: kubectl create secret tls speech-tls-secret --key $2 --cert $3 -n lumenvox\n" | $TEE -a
 kubectl create secret tls speech-tls-secret --key $2 --cert $3 -n lumenvox 1>>$MAIN_LOG 2>>$ERR_LOG
 if [ $? -ne 0 ]; then
     printf "\tFailed to create secret speech-tls-secret\n" | $TEE -a
