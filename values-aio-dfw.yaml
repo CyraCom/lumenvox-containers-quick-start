@@ -16,7 +16,8 @@ lumenvox-common:
 global:
   defaultNamespace: "lumenvox"
   # Note: this suffix must match that of the server.crt created
-  hostnameSuffix: k8s.nadfw.cyracom.com" 
+  #hostnameSuffix: k8s.nadfw.cyracom.com" 
+  hostnameSuffix: nadfwlumc000.cyracom.com" 
   lumenvox:
     ingress:
       className: nginx
