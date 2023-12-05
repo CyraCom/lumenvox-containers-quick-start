@@ -1,0 +1,61 @@
+# kubeadm basic values
+
+lumenvox-common:
+  licensing:
+    # Note: licensing (and therefore system) will not work without a valid clusterGuid value
+    clusterGuid: "c086ff39-4f09-4068-9cbf-d4e2507ffded"
+  rabbitmq:
+    enabled: false
+  redis:
+    enabled: false
+  mongodb:
+    enabled: false
+  postgresql:
+    enabled: false
+
+global:
+  defaultNamespace: "lumenvox"
+  # Note: this suffix must match that of the server.crt created
+  hostnameSuffix: "cyracomdev.com" 
+  lumenvox:
+    ingress:
+      className: nginx
+    loggingVerbosity: "debug"
+    redisTtl: 3h  
+  image:
+    pullPolicy: Always
+    tag: ":4.4"
+  mockData:
+    enabled: false
+    testDataString: ""
+    deploymentId: []
+    jsonKeys:
+      master: ''
+      customer: ''
+      emergencyPublic: ''
+  rabbitmq:
+    connection:
+      url: "10.99.52.16"
+  redis:
+    connection:
+      url: "10.99.52.16"
+  mongodb:
+    connection:
+      url: "10.99.52.16"
+  postgresql:
+    connection:
+      url: "10.99.52.16"
+      databaseName: "lumenvox_single_db"
+      databaseSchema: "public"
+  enabled:
+    lumenvoxSpeech: true
+    lumenvoxVb: false
+    lumenvoxCommon: true
+  enableItn: false  
+  asrLanguages:
+    - name: "en"
+  ttsLanguages:
+    - name: "en_us"
+      voices:
+        - name: "chris"
+

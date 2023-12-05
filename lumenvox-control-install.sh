@@ -2,6 +2,7 @@
 
 if [ $# -ne 3 ]; then
     printf "Usage: ./lumenvox-control-install.sh values.yaml server.key server.crt\n"
+    printf "Also requires USER and GROUP to be set to appropriate values"
     exit 1
 fi
 
